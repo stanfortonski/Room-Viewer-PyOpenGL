@@ -1,6 +1,8 @@
 # Room-Viewer-PyOpenGL
 Example app that use PyOpenGL | OpenGL 3.3
 
+![Ocean surface](ss/ss.jpg)
+
 ## About
 This is example app that use Python with OpenGL. Application shows room model created by me in Blender and converted to json via [assimp2json](https://github.com/assimp/assimp2json).
 
