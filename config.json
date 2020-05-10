@@ -1,0 +1,12 @@
+{
+    "app_name": "Room Viewer PyOpenGL",
+    "debug_mode": false,
+    "fullscreen": false,
+    "window_width": 1280,
+    "window_height": 720,
+    "shadow_width": 1024,
+    "shadow_height": 1024,
+    "near_plane": 0.1,
+    "far_plane": 200,
+    "sampling_level": 4
+}
