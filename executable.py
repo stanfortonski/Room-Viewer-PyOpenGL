@@ -56,7 +56,7 @@ def main():
 
     lightPos = glm.vec3(0, 2, 0)
     viewPos = glm.vec3(0, 0.5, 0)
-    perspective = glm.perspective(45, width/height, config['near_plane'], config['far_plane'])
+    perspective = glm.perspective(45, width / height, config['near_plane'], config['far_plane'])
 
     room = Model('resources/models/room.json')
 
@@ -95,7 +95,7 @@ def main():
 def resizeCallback(window, w, h):
     global width, height
     width, height = w, h
-    perspective = glm.perspective(45, width/height, config['near_plane'], config['far_plane'])
+    perspective = glm.perspective(45, width / height, config['near_plane'], config['far_plane'])
 
 def keyCallback(window, key, scancode, action, mods):
     if key == glfw.KEY_ESCAPE and action == glfw.PRESS:

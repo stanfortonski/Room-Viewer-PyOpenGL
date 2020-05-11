@@ -26,11 +26,11 @@ struct PointLight
 
 const int DISCS_PCF_AMOUNT = 20;
 const vec3 DISCS_PCF[DISCS_PCF_AMOUNT] = vec3[](
-   vec3(1, 1, 1), vec3(1, -1, 1), vec3(-1, -1, 1), vec3(-1, 1, 1),
-   vec3(1, 1, -1), vec3(1, -1, -1), vec3(-1, -1, -1), vec3(-1, 1, -1),
-   vec3(1, 1, 0), vec3(1, -1, 0), vec3(-1, -1, 0), vec3(-1, 1, 0),
-   vec3(1, 0, 1), vec3(-1, 0, 1), vec3(1, 0, -1), vec3(-1, 0, -1),
-   vec3(0, 1, 1), vec3(0, -1, 1), vec3(0, -1, -1), vec3(0, 1, -1)
+   vec3(1, 1, 1), vec3(1, -1, 1), vec3(-1, -1, 1),  vec3(-1, 1, 1),
+   vec3(1, 1, -1),  vec3(1, -1, -1),vec3(-1, -1, -1), vec3(-1, 1, -1),
+   vec3(1, 1, 0), vec3(1, -1, 0), vec3(-1, -1, 0),  vec3(-1, 1, 0),
+   vec3(1, 0, 1), vec3(-1, 0, 1), vec3(1, 0, -1),   vec3(-1, 0, -1),
+   vec3(0, 1, 1), vec3(0, -1, 1), vec3(0, -1, -1),  vec3(0, 1, -1)
 );
 
 uniform vec3 viewPos;
