@@ -35,7 +35,7 @@ def main():
 
     glfw.make_context_current(window)
     glfw.set_framebuffer_size_callback(window, resizeCallback)
-    glfw.set_key_callback(window, keyCallback);
+    glfw.set_key_callback(window, keyCallback)
 
     glEnable(GL_DEPTH_TEST)
     glEnable(GL_MULTISAMPLE)
@@ -99,7 +99,7 @@ def resizeCallback(window, w, h):
 
 def keyCallback(window, key, scancode, action, mods):
     if key == glfw.KEY_ESCAPE and action == glfw.PRESS:
-        glfw.set_window_should_close(window, glfw.TRUE);
+        glfw.set_window_should_close(window, glfw.TRUE)
 
 if __name__ == '__main__':
     main()
