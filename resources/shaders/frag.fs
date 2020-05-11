@@ -16,12 +16,12 @@ struct Material
 struct PointLight
 {
     vec3 position;
-    float constant;
-    float linear;
-    float quadratic;
     vec3 diffuse;
     vec3 ambient;
     vec3 specular;
+    float constant;
+    float linear;
+    float quadratic;
 };
 
 const int DISCS_PCF_AMOUNT = 20;
@@ -47,12 +47,12 @@ void main()
 {
     PointLight light;
     light.position = lightPos;
-    light.ambient = vec3(0.2);
-    light.diffuse = vec3(0.75);
-    light.specular = vec3(0.1);
+    light.ambient = vec3(0.27);
+    light.diffuse = vec3(0.55);
+    light.specular = vec3(0.55);
     light.constant = 1.0;
-    light.linear = 0.001;
-    light.quadratic = 0.001;
+    light.linear = 0.01;
+    light.quadratic = 0.01;
 
     vec3 norm = normalize(normal);
     vec3 viewDir = normalize(viewPos - fragPos);
@@ -63,7 +63,7 @@ void main()
 
 float shadowCalculation(PointLight light)
 {
-    const float bias = 0.15;
+    const float bias = 0.12;
 
     vec3 LightToFragDir = fragPos - light.position;
     float currentDepth = length(LightToFragDir) - bias;
@@ -84,16 +84,17 @@ float shadowCalculation(PointLight light)
 
 vec3 calcPointLight(PointLight light, vec3 normal, vec3 viewDir, float shadow)
 {
-    vec3 lightDir = normalize(light.position - fragPos);
+    vec3 fragToLightDir = light.position - fragPos;
+    float distances = length(fragToLightDir);
+    fragToLightDir = normalize(fragToLightDir);
+    float weakening = 1.0 / (light.constant + light.linear * distances + light.quadratic * pow(distances, 2));
 
-    float diff = max(dot(normal, lightDir), 0.0);
-    vec3 halfwayDir = normalize(lightDir + viewDir);
-    float spec = pow(max(dot(normal, halfwayDir), 0.0), material.shininess*0.2);
+    float diff = max(dot(fragToLightDir, normal), 0.0);
+    vec3 halfwayDir = normalize(fragToLightDir + viewDir);
+    float specAngle = max(dot(halfwayDir, normal), 0.0);
+    float spec = pow(specAngle, material.shininess);
 
-    float distances = length(light.position - fragPos);
-    float weakening = 1.0 / (light.constant + light.linear * distances + light.quadratic * pow(distances, 2.0));
-
-    vec3 ambient = light.ambient * weakening;
+    vec3 ambient = light.ambient * material.ambient * weakening;
     vec3 diffuse = light.diffuse * diff * weakening;
     vec3 specular = light.specular * spec * weakening;
     return (ambient + (1.0 - shadow) * (diffuse + specular)) * (material.diffuse + material.specular);

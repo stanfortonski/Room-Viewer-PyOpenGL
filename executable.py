@@ -59,7 +59,6 @@ def main():
     perspective = glm.perspective(45, width/height, config['near_plane'], config['far_plane'])
 
     room = Model('resources/models/room.json')
-    room.model = glm.rotate(glm.mat4(), glm.radians(160), glm.vec3(0, 1, 0)) # bugfix
 
     lastTime = glfw.get_time()
     while not glfw.window_should_close(window):
